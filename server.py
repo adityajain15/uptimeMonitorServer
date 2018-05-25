@@ -12,6 +12,7 @@ async def time(websocket, path):
     num_cores = psutil.cpu_count()
     normalised_load = str(one_min_average / num_cores)
     await websocket.send(normalised_load)
+    print('Sent data', normalised_load)
     await asyncio.sleep(10)
 
 start_server = websockets.serve(time, '127.0.0.1', 8888)
